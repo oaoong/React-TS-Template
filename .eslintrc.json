@@ -1,9 +1,125 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": "eslint:recommended",
-  "parser": "@typescript-eslint/parser"
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "plugins": ["prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended",
+        "plugin:import/recommended",
+        "plugin:import/typescript",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+            "alias": {
+                "map": [
+                    ["@src", "./src"],
+                    ["@assets", "./assets"]
+                ],
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        },
+        "react": {
+            "version": "detect"
+        }
+    },
+    "rules": {
+        "vars-on-top": "error",
+        "block-scoped-var": "error",
+        "quotes": [
+            "error",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "always",
+                "named": "never"
+            }
+        ],
+        "curly": ["error", "multi-line"],
+        "comma-dangle": ["error", "always-multiline"],
+        "max-len": [
+            "error",
+            {
+                "code": 80,
+                "tabWidth": 4,
+                "ignoreUrls": true,
+                "ignoreComments": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true
+            }
+        ],
+        "import/namespace": [
+            "error",
+            {
+                "allowComputed": true
+            }
+        ],
+        "no-self-assign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        // suppress errors for missing 'import React' in files
+        "react/react-in-jsx-scope": "off",
+        // allow jsx syntax in js files (for next.js project)
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], //should add ".ts" if typescript project
+        "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+        "react-hooks/rules-of-hooks": "error",
+        "no-console": ["warn", { "allow": ["warn", "error"] }],
+        "react/prop-types": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "type",
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index",
+                    "unknown"
+                ],
+                "pathGroupsExcludedImportTypes": [],
+                "alphabetize": {
+                    "order": "asc"
+                }
+            }
+        ]
+    },
+    "ignorePatterns": [
+        "node_modules/",
+        "dist/",
+        "build/",
+        "coverage/",
+        "public/",
+        "assets/",
+        "scripts/",
+        "config/",
+        ".babelrc",
+        "jest.config.js",
+        "tsconfig.json"
+    ]
 }

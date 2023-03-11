@@ -4,8 +4,23 @@
     [
       "@babel/plugin-transform-runtime",
       {
-        "corejs": 3
+        "corejs": 3,
+        "regenerator": true
       }
     ]
-  ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "wrap",
+            "ignoreFilenames": ["node_modules"]
+          }
+        ],
+        ["transform-remove-console", { "exclude": ["error", "warn"] }]
+      ]
+    }
+  }
 }
