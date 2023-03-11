@@ -24,7 +24,6 @@ module.exports = [
     chunkFilename: "[name].[chunkhash].chunk.css",
   }),
   new ESLintPlugin({
-    // Plugin options
     extensions: ["js", "jsx", "ts", "tsx"],
     emitError: true,
     emitWarning: true,
@@ -36,5 +35,8 @@ module.exports = [
   new BundleAnalyzerPlugin({
     analyzerMode: "static",
     openAnalyzer: false,
+  }),
+  new webpack.ProvidePlugin({
+    React: "react",
   }),
 ].filter(Boolean);
